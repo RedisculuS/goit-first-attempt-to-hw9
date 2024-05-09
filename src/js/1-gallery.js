@@ -1,5 +1,6 @@
 'use strict';
-'use strict';
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 const images = [
   {
@@ -69,41 +70,31 @@ const images = [
 
 const containerGallery = document.querySelector('.gallery');
 containerGallery.insertAdjacentHTML('beforeend', createMarkup(images));
-containerGallery.addEventListener('click', handleClick);
 
 function createMarkup(arr) {
   return arr
     .map(
       img => `
-    <li class="gallery-item">
-        <a class="gallery-link" href="${img.original}">
-            <img
-                class="gallery-image"
-                src="${img.preview}"
-                data-source="${img.original}"
-                alt="${img.description}"
-            />
-        </a>
+      <li class="gallery-item">
+      <a class="gallery-link" href="${img.original}">
+        <img 
+          class="gallery-image" 
+          src="${img.preview}" 
+          alt="${img.description}" 
+          />
+      </a>
     </li>
     `
     )
     .join('');
 }
 
-function handleClick(event) {
-  event.preventDefault();
-  if (event.target === event.currentTarget) {
-    return;
-  }
+// let gallery = new SimpleLightbox('.gallery a');
+const gallery = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+// gallery.on('show.simplelightbox',  {
 
-  //   console.log(event.target.dataset.source);
+// });
 
-  //   const instance = basicLightbox.create(
-  //     `
-  //               <div class="modal">
-  //                  <img src="${event.target.dataset.source}" >
-  //               </div>
-  //           `
-  //   );
-  //   instance.show();
-}
