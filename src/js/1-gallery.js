@@ -89,12 +89,8 @@ function createMarkup(arr) {
     .join('');
 }
 
-// let gallery = new SimpleLightbox('.gallery a');
 const gallery = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
-// gallery.on('show.simplelightbox',  {
-
-// });
 
